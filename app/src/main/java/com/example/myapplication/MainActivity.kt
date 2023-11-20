@@ -25,6 +25,7 @@ class MainActivity : ComponentActivity() {
                     NavHost(navController = navController, startDestination = "profile") {
                         composable("profile") { ProfileScreen(navController) }
                         composable("settings") { SettingsScreen(navController) }
+                        composable("content") { ContentScreen(navController) }
                     }
                 }
             }

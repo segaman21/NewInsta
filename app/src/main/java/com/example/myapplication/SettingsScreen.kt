@@ -18,7 +18,7 @@ internal fun SettingsScreen(navController: NavController) {
         topBar = {
             MainToolbar(
                 title = "Статистика",
-                onBackArrowClick = { navController.popBackStack() })
+                onBackArrowClick = { navController.navigate("content") })
         },
         containerColor = MyColors.Surface
     )

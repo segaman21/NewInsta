@@ -6,11 +6,10 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.ExperimentalLayoutApi
-import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.navigationBarsPadding
@@ -18,9 +17,10 @@ import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.GridItemSpan
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.BottomSheetDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ModalBottomSheet
@@ -36,6 +36,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -44,7 +45,6 @@ import com.example.myapplication.ui.theme.FitnessTheme
 import com.example.myapplication.ui.theme.MyColors
 import kotlinx.coroutines.launch
 
-@OptIn(ExperimentalLayoutApi::class)
 @Composable
 internal fun ProfileScreen(
     navController: NavController
@@ -65,70 +65,42 @@ internal fun ProfileScreen(
         bottomBar = { BottomBar() },
         containerColor = MyColors.Surface
     ) {
-        Column(
+        LazyVerticalGrid(
+            columns = GridCells.Fixed(3),
             modifier = Modifier
                 .fillMaxWidth()
-                .background(color = MyColors.Surface)
-                .padding(it)
-                .verticalScroll(rememberScrollState())
+                .padding(it),
+            verticalArrangement = Arrangement.spacedBy(1.dp),
+            horizontalArrangement = Arrangement.spacedBy(1.dp)
         ) {
-            val contentList = listOf(
-                R.drawable.acc_1,
-                R.drawable.acc_2,
-                R.drawable.acc_3,
-                R.drawable.acc_4,
-                R.drawable.acc_5,
-                R.drawable.acc_6,
-                R.drawable.acc_7,
-                R.drawable.acc_8,
-                R.drawable.acc_9,
-                R.drawable.acc_10,
-                R.drawable.acc_11,
-                R.drawable.acc_12,
-                R.drawable.acc_13,
-                R.drawable.acc_14,
-                R.drawable.acc_15,
-                R.drawable.acc_16,
-                R.drawable.acc_17,
-                R.drawable.acc_18,
-            )
-            Spacer(modifier = Modifier.height(18.dp))
-            Avatar()
-            Spacer(modifier = Modifier.height(8.dp))
-            AvatarInfo()
-            Spacer(modifier = Modifier.height(8.dp))
-            Banner()
-            Spacer(modifier = Modifier.height(8.dp))
-            Chip()
-            Spacer(modifier = Modifier.height(16.dp))
-            Actual()
-            Spacer(modifier = Modifier.height(16.dp))
-            ContentPanel()
-            FlowRow(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween
-            ) {
-                contentList.forEach { item ->
-                    Image(
-                        modifier = Modifier.size(128.dp),
-                        painter = painterResource(id = item),
-                        contentDescription = null
-                    )
+            item(span = { GridItemSpan(maxLineSpan) }) {
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .background(color = MyColors.Surface)
+                ) {
+                    Spacer(modifier = Modifier.height(18.dp))
+                    Avatar()
+                    Spacer(modifier = Modifier.height(8.dp))
+                    AvatarInfo()
+                    Spacer(modifier = Modifier.height(8.dp))
+                    Banner()
+                    Spacer(modifier = Modifier.height(8.dp))
+                    Chip()
+                    Spacer(modifier = Modifier.height(16.dp))
+                    Actual()
+                    Spacer(modifier = Modifier.height(16.dp))
+                    ContentPanel()
                 }
             }
-
-//            LazyVerticalGrid(
-//                columns = GridCells.Fixed(3),
-//                modifier = Modifier.fillMaxWidth(),
-//            ) {
-//                items(qwe.size) {
-//                    Image(
-//                        modifier = Modifier.fillMaxSize(),
-//                        painter = painterResource(id = qwe[it]),
-//                        contentDescription = null
-//                    )
-//                }
-//            }
+            items(contentList.size) {
+                Image(
+                    modifier = Modifier.fillMaxSize(),
+                    contentScale = ContentScale.FillWidth,
+                    painter = painterResource(id = contentList[it]),
+                    contentDescription = null
+                )
+            }
         }
     }
 }
@@ -372,3 +344,24 @@ internal fun TrainingsSpentBottomSheetUI(
         }
     }
 }
+
+private val contentList = listOf(
+    R.drawable.acc_1,
+    R.drawable.acc_2,
+    R.drawable.acc_3,
+    R.drawable.acc_4,
+    R.drawable.acc_5,
+    R.drawable.acc_6,
+    R.drawable.acc_7,
+    R.drawable.acc_8,
+    R.drawable.acc_9,
+    R.drawable.acc_10,
+    R.drawable.acc_11,
+    R.drawable.acc_12,
+    R.drawable.acc_13,
+    R.drawable.acc_14,
+    R.drawable.acc_15,
+    R.drawable.acc_16,
+    R.drawable.acc_17,
+    R.drawable.acc_18,
+)
