@@ -9,6 +9,7 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
 import androidx.navigation.NavController
 import com.example.myapplication.ui.theme.MyColors
 
@@ -18,7 +19,10 @@ internal fun SettingsScreen(navController: NavController) {
         topBar = {
             MainToolbar(
                 title = "Статистика",
-                onBackArrowClick = { navController.navigate("content") })
+                onBackArrowClick = { navController.popBackStack() },
+                onqwe = { navController.navigate("content") },
+                image = painterResource(id = R.drawable.ic_info)
+            )
         },
         containerColor = MyColors.Surface
     )
@@ -33,5 +37,4 @@ internal fun SettingsScreen(navController: NavController) {
             SettingChip()
         }
     }
-
 }

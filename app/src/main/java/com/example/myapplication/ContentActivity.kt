@@ -32,8 +32,10 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.myapplication.ui.theme.FitnessTheme
+import com.example.myapplication.ui.theme.MyColors
 
 @Composable
 private fun ToolBar(
@@ -60,10 +62,13 @@ fun ContentScreen(navController: NavController) {
         // A surface container using the 'background' color from the theme
         Surface(
             modifier = Modifier.fillMaxSize(),
-            color = MaterialTheme.colorScheme.background
+            color = MyColors.Surface
         ) {
             Column {
-                ToolBar(onBackClick = { navController.popBackStack() })
+                MainToolbar(
+                    title = "Контент",
+                    onBackArrowClick = { navController.popBackStack() }
+                )
                 ChipRow()
                 Box(
                     modifier = Modifier
@@ -172,29 +177,35 @@ private fun ChipRow() {
             modifier = Modifier
                 .clip(RoundedCornerShape(8.dp, 8.dp, 8.dp, 8.dp))
                 .background(color = FitnessTheme.colors.BackgroundChip)
-                .padding(vertical = 10.dp)
-                .padding(horizontal = 8.dp),
+                .padding(vertical = 6.dp)
+                .padding(horizontal = 12.dp),
             maxLines = 1,
             overflow = TextOverflow.Ellipsis,
-            style = FitnessTheme.textStyles.body3.copy(fontWeight = FontWeight.W600),
+            style = FitnessTheme.textStyles.body3.copy(
+                fontWeight = FontWeight.W800,
+                fontSize = 14.sp
+            ),
         )
         Text(
             text = "Последние 7 дней",
             modifier = Modifier
                 .clip(RoundedCornerShape(8.dp, 8.dp, 8.dp, 8.dp))
                 .background(color = FitnessTheme.colors.BackgroundChip)
-                .padding(vertical = 10.dp)
-                .padding(horizontal = 8.dp),
+                .padding(vertical = 6.dp)
+                .padding(horizontal = 12.dp),
             maxLines = 1,
             overflow = TextOverflow.Ellipsis,
-            style = FitnessTheme.textStyles.body3.copy(fontWeight = FontWeight.W600),
+            style = FitnessTheme.textStyles.body3.copy(
+                fontWeight = FontWeight.W800,
+                fontSize = 14.sp
+            ),
         )
         Box(
             modifier = Modifier
                 .clip(RoundedCornerShape(8.dp, 8.dp, 8.dp, 8.dp))
                 .background(color = FitnessTheme.colors.BackgroundChip)
-                .padding(vertical = 10.dp)
-                .padding(horizontal = 8.dp),
+                .padding(vertical = 6.dp)
+                .padding(horizontal = 6.dp),
         ) {
             Image(
                 painter = painterResource(id = R.drawable.options),

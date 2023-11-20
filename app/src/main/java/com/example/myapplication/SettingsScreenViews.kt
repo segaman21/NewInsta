@@ -2,6 +2,7 @@ package com.example.myapplication
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
@@ -19,6 +20,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -31,6 +33,8 @@ internal fun MainToolbar(
     title: String,
     modifier: Modifier = Modifier,
     onBackArrowClick: (() -> Unit)? = null,
+    onqwe: (() -> Unit)? = null,
+    image: Painter? = null,
 ) {
     Row(
         modifier = modifier
@@ -62,13 +66,16 @@ internal fun MainToolbar(
                 ),
             )
         }
-        Image(
-            modifier = Modifier
-                .size(45.dp)
-                .padding(end = 16.dp),
-            painter = painterResource(id = R.drawable.ic_info),
-            contentDescription = null
-        )
+        image?.let {
+            Image(
+                modifier = Modifier
+                    .size(45.dp)
+                    .padding(end = 16.dp)
+                    .clickable { onqwe?.let { it() } },
+                painter = it,
+                contentDescription = null
+            )
+        }
     }
 }
 
@@ -77,6 +84,7 @@ internal fun SettingChip() {
     Box(
         Modifier
             .padding(horizontal = 11.dp)
+            .padding(top= 16.dp)
             .fillMaxWidth(),
     ) {
         Row(
@@ -90,7 +98,7 @@ internal fun SettingChip() {
                 text = "Последние 7 дней",
                 modifier = Modifier
                     .padding(vertical = 6.dp)
-                    .padding(start = 16.dp),
+                    .padding(start = 12.dp),
                 style = FitnessTheme.textStyles.body3.copy(
                     fontWeight = FontWeight.W800,
                     fontSize = 14.sp
@@ -103,7 +111,7 @@ internal fun SettingChip() {
                 painter = painterResource(id = R.drawable.ic_collapse),
                 contentDescription = null
             )
-            Spacer(modifier = Modifier.width(14.dp))
+            Spacer(modifier = Modifier.width(12.dp))
         }
         Text(
             text = "14 ноя - 20 ноя",
