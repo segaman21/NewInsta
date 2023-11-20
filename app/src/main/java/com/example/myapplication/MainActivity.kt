@@ -1,5 +1,6 @@
 package com.example.myapplication
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.ComponentActivity
@@ -13,6 +14,7 @@ import com.example.myapplication.ui.theme.FitnessTheme
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        startActivity(Intent(this, ContentActivity::class.java))
         setContent {
             FitnessTheme {
                 // A surface container using the 'background' color from the theme
