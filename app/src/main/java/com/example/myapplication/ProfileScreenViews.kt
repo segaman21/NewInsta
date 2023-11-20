@@ -246,7 +246,6 @@ internal fun Banner() {
             .clip(RoundedCornerShape(8.dp))
             .background(color = FitnessTheme.colors.BackgroundChip)
     ) {
-
         Text(
             text = "Профессиональная панель",
             modifier = Modifier
@@ -270,7 +269,7 @@ internal fun Banner() {
 }
 
 @Composable
-internal fun chip() {
+internal fun Chip() {
     Row(
         Modifier
             .padding(horizontal = 16.dp)
