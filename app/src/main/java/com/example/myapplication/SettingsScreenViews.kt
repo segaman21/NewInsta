@@ -58,10 +58,10 @@ internal fun MainToolbar(
             Text(
                 text = title,
                 modifier = Modifier
-                    .padding(start = 22.dp),
+                    .padding(start = 20.dp),
                 style = FitnessTheme.textStyles.title.copy(
                     fontSize = 19.sp,
-                    fontWeight = FontWeight.W500
+                    fontWeight = FontWeight.W600
                 ),
             )
         }
