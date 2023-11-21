@@ -1,5 +1,6 @@
 package com.example.myapplication
 
+import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -34,6 +35,7 @@ internal fun MainToolbar(
     modifier: Modifier = Modifier,
     onBackArrowClick: (() -> Unit)? = null,
     image: Painter? = null,
+    @DrawableRes backButtonRes: Int = R.drawable.ic_arrow_left
 ) {
     Row(
         modifier = modifier
@@ -50,7 +52,7 @@ internal fun MainToolbar(
                     modifier = Modifier
                 ) {
                     Icon(
-                        painter = painterResource(id = R.drawable.ic_arrow_left),
+                        painter = painterResource(id = backButtonRes),
                         contentDescription = null
                     )
                 }
