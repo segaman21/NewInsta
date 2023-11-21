@@ -141,12 +141,13 @@ internal fun TrainingsSpentBottomSheetUI(
             containerColor = MyColors.Surface
         ) {
             Column(
-                Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 16.dp),
+                Modifier.fillMaxWidth(),
                 verticalArrangement = Arrangement.SpaceBetween
             ) {
-                Row(verticalAlignment = Alignment.CenterVertically) {
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    modifier = Modifier.padding(horizontal = 16.dp)
+                ) {
                     Image(
                         modifier = Modifier.size(27.dp),
                         painter = painterResource(id = R.drawable.sett_1),
@@ -161,7 +162,9 @@ internal fun TrainingsSpentBottomSheetUI(
                 }
                 Spacer(modifier = Modifier.height(16.dp))
                 Row(
-                    modifier = Modifier.fillMaxWidth(),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 16.dp),
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
@@ -195,10 +198,11 @@ internal fun TrainingsSpentBottomSheetUI(
                         )
                     }
                 }
-                Spacer(modifier = Modifier.height(16.dp))
+                Spacer(modifier = Modifier.height(8.dp))
                 Row(
                     modifier = Modifier
                         .clickable { onActionNavigate() }
+                        .padding(horizontal = 16.dp)
                         .fillMaxWidth(),
                     verticalAlignment = Alignment.CenterVertically
                 ) {
@@ -209,13 +213,17 @@ internal fun TrainingsSpentBottomSheetUI(
                     )
                     Spacer(modifier = Modifier.width(12.dp))
                     Text(
+                        modifier = Modifier.padding(vertical = 8.dp),
                         text = "Статистика",
                         maxLines = 1,
                         style = FitnessTheme.textStyles.body4.copy(fontSize = 17.sp)
                     )
                 }
-                Spacer(modifier = Modifier.height(16.dp))
-                Row(verticalAlignment = Alignment.CenterVertically) {
+                Spacer(modifier = Modifier.height(8.dp))
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    modifier = Modifier.padding(horizontal = 16.dp)
+                ) {
                     Image(
                         modifier = Modifier.size(27.dp),
                         painter = painterResource(id = R.drawable.sett_4),
@@ -229,7 +237,10 @@ internal fun TrainingsSpentBottomSheetUI(
                     )
                 }
                 Spacer(modifier = Modifier.height(16.dp))
-                Row(verticalAlignment = Alignment.CenterVertically) {
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    modifier = Modifier.padding(horizontal = 16.dp)
+                ) {
                     Image(
                         modifier = Modifier.size(27.dp),
                         painter = painterResource(id = R.drawable.sett_5),
@@ -243,7 +254,10 @@ internal fun TrainingsSpentBottomSheetUI(
                     )
                 }
                 Spacer(modifier = Modifier.height(16.dp))
-                Row(verticalAlignment = Alignment.CenterVertically) {
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    modifier = Modifier.padding(horizontal = 16.dp)
+                ) {
                     Image(
                         modifier = Modifier.size(27.dp),
                         painter = painterResource(id = R.drawable.sett_6),
@@ -258,7 +272,10 @@ internal fun TrainingsSpentBottomSheetUI(
                 }
                 Spacer(modifier = Modifier.height(16.dp))
 
-                Row(verticalAlignment = Alignment.CenterVertically) {
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    modifier = Modifier.padding(horizontal = 16.dp)
+                ) {
                     Image(
                         modifier = Modifier.size(27.dp),
                         painter = painterResource(id = R.drawable.sett_7),
@@ -272,7 +289,10 @@ internal fun TrainingsSpentBottomSheetUI(
                     )
                 }
                 Spacer(modifier = Modifier.height(16.dp))
-                Row(verticalAlignment = Alignment.CenterVertically) {
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    modifier = Modifier.padding(horizontal = 16.dp)
+                ) {
                     Image(
                         modifier = Modifier.size(27.dp),
                         painter = painterResource(id = R.drawable.sett_8),
@@ -286,7 +306,10 @@ internal fun TrainingsSpentBottomSheetUI(
                     )
                 }
                 Spacer(modifier = Modifier.height(16.dp))
-                Row(verticalAlignment = Alignment.CenterVertically) {
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    modifier = Modifier.padding(horizontal = 16.dp)
+                ) {
                     Image(
                         modifier = Modifier.size(27.dp),
                         painter = painterResource(id = R.drawable.sett_9),
@@ -300,7 +323,10 @@ internal fun TrainingsSpentBottomSheetUI(
                     )
                 }
                 Spacer(modifier = Modifier.height(16.dp))
-                Row(verticalAlignment = Alignment.CenterVertically) {
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    modifier = Modifier.padding(horizontal = 16.dp)
+                ) {
                     Image(
                         modifier = Modifier.size(27.dp),
                         painter = painterResource(id = R.drawable.sett_10),
@@ -314,7 +340,10 @@ internal fun TrainingsSpentBottomSheetUI(
                     )
                 }
                 Spacer(modifier = Modifier.height(16.dp))
-                Row(verticalAlignment = Alignment.CenterVertically) {
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    modifier = Modifier.padding(horizontal = 16.dp)
+                ) {
                     Image(
                         modifier = Modifier.size(27.dp),
                         painter = painterResource(id = R.drawable.sett_11),
@@ -328,7 +357,10 @@ internal fun TrainingsSpentBottomSheetUI(
                     )
                 }
                 Spacer(modifier = Modifier.height(16.dp))
-                Row(verticalAlignment = Alignment.CenterVertically) {
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    modifier = Modifier.padding(horizontal = 16.dp)
+                ) {
                     Image(
                         modifier = Modifier.size(27.dp),
                         painter = painterResource(id = R.drawable.sett_12),

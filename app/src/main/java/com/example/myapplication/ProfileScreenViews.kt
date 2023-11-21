@@ -19,6 +19,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.font.FontWeight.Companion.W600
@@ -191,7 +192,7 @@ internal fun AvatarInfo(
             Text(
                 text = "www.youtube.com/watch?v=|-ryBLoz|_Q",
                 style = FitnessTheme.textStyles.body4.copy(
-                    color = MyColors.SecondaryBlue, fontWeight = FontWeight.W500,
+                    color = Color(0xFF435F7E), fontWeight = FontWeight.W500,
                 ),
             )
         }
