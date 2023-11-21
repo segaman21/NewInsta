@@ -33,7 +33,6 @@ internal fun MainToolbar(
     title: String,
     modifier: Modifier = Modifier,
     onBackArrowClick: (() -> Unit)? = null,
-    onqwe: (() -> Unit)? = null,
     image: Painter? = null,
 ) {
     Row(
@@ -70,8 +69,7 @@ internal fun MainToolbar(
             Image(
                 modifier = Modifier
                     .size(45.dp)
-                    .padding(end = 16.dp)
-                    .clickable { onqwe?.let { it() } },
+                    .padding(end = 16.dp),
                 painter = it,
                 contentDescription = null
             )
@@ -84,7 +82,7 @@ internal fun SettingChip() {
     Box(
         Modifier
             .padding(horizontal = 11.dp)
-            .padding(top= 16.dp)
+            .padding(vertical= 16.dp)
             .fillMaxWidth(),
     ) {
         Row(
@@ -114,7 +112,7 @@ internal fun SettingChip() {
             Spacer(modifier = Modifier.width(12.dp))
         }
         Text(
-            text = "14 ноя - 20 ноя",
+            text = "15 ноя - 21 ноя",
             modifier = Modifier
                 .padding(end = 6.dp)
                 .align(Alignment.BottomEnd),

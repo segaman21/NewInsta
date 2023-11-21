@@ -62,7 +62,6 @@ object FitnessTheme {
 data class MyTextStyles(
     val title: TextStyle = baseTextStyle().copy(
         fontSize = 22.sp, color = Color.Black, fontWeight = FontWeight.W700,
-        fontFamily = FontFamily.SansSerif,
     ),
     val body: TextStyle = baseTextStyle().copy(
         fontSize = 14.sp, color = Color.Black, fontWeight = FontWeight.W500
@@ -105,5 +104,5 @@ object MyColors {
     val SecondaryBlue = Color(0xBC112A4B)
     val BackgroundChip = Color(0xFFF0F0F0)
     val LightBlue = Color(0xFF03A9F4)
-
+    val Green = Color(0xFF3DA241)
 }
