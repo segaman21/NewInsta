@@ -116,7 +116,7 @@ internal fun Avatar(
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Text(
-                    text = "254 т...",
+                    text = "255 т...",
                     maxLines = 1,
                     style = FitnessTheme.textStyles.body1
                 )
@@ -316,7 +316,7 @@ internal fun Chip() {
 @Composable
 internal fun Actual() {
     val actualList = listOf(
-        R.drawable.actual_first,
+        R.drawable.duba,
         R.drawable.newstor,
         R.drawable.pranki,
         R.drawable.act_3,

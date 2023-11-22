@@ -1,8 +1,10 @@
 package com.example.myapplication
 
+import androidx.activity.compose.BackHandler
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -30,7 +32,9 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.Alignment.Companion.Center
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
+import androidx.compose.ui.Alignment.Companion.CenterStart
 import androidx.compose.ui.Alignment.Companion.CenterVertically
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -41,8 +45,8 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight.Companion.W400
 import androidx.compose.ui.text.font.FontWeight.Companion.W500
 import androidx.compose.ui.text.font.FontWeight.Companion.W600
+import androidx.compose.ui.text.font.FontWeight.Companion.W700
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -137,15 +141,22 @@ val statScreenData2 = StatScreenData(
     R.drawable.gr_3
 )
 
+const val KEY = "KEY"
+
 @Composable
 fun StatsScreen(
-    navController: NavController? = null,
+    navController: NavController,
     statScreenData: StatScreenData = statScreenData1
 ) {
     var loading by remember { mutableStateOf(true) }
     LaunchedEffect(Unit) {
         delay(Random.nextDouble(1.4, 2.0).seconds)
         loading = false
+    }
+
+    BackHandler {
+        navController.previousBackStackEntry?.savedStateHandle?.set(KEY,true)
+        navController.popBackStack()
     }
 
     FitnessTheme {
@@ -155,20 +166,31 @@ fun StatsScreen(
         ) {
             Scaffold(
                 topBar = {
-                    Box(Modifier.fillMaxWidth()) {
-                        MainToolbar(
-                            title = "",
-                            backButtonRes = R.drawable.ic_back,
-                            onBackArrowClick = { navController?.popBackStack() }
+                    Box(
+                        modifier = Modifier
+                            .background(color = MyColors.Surface)
+                            .fillMaxWidth()
+                            .height(62.dp),
+                    ) {
+                        Image(
+                            modifier = Modifier
+                                .size(26.dp)
+                                .clickable {
+                                    navController.previousBackStackEntry?.savedStateHandle?.set(KEY,true)
+                                    navController.popBackStack()
+                                }
+                                .align(CenterStart)
+                                .padding(start = 12.dp),
+                            painter = painterResource(id = R.drawable.backk),
+                            contentDescription = null
                         )
                         Text(
-                    //        text = "Insights",
-                            text = "Версия для проверки(этот текст будет удалён)",
-                            modifier = Modifier.align(Alignment.Center),
+                            text = "Insights",
+                            modifier = Modifier.align(Center),
                             textAlign = TextAlign.Center,
                             style = FitnessTheme.textStyles.title.copy(
-                                fontSize = 16.sp,
-                                fontWeight = W600
+                                fontSize = 15.sp,
+                                fontWeight = W700
                             )
                         )
                     }
@@ -177,7 +199,7 @@ fun StatsScreen(
                     if (loading) {
                         Box(modifier = Modifier.fillMaxSize()) {
                             CircularProgressIndicator(
-                                modifier = Modifier.align(Alignment.Center),
+                                modifier = Modifier.align(Center),
                                 color = FitnessTheme.colors.Gray3,
                                 strokeWidth = 1.dp,
                             )
@@ -251,13 +273,13 @@ private fun Content(paddingValues: PaddingValues, data: StatScreenData) {
                     horizontalAlignment = CenterHorizontally
                 ) {
                     Text(
-                        modifier = Modifier.offset(x = (-6).dp),
+                        modifier = Modifier.offset(x = (-4).dp),
                         text = data.reachedAccounts,
                         style = FitnessTheme.textStyles.title,
                         textAlign = TextAlign.Center
                     )
                     Text(
-                        modifier = Modifier.offset(x = (-6).dp),
+                        modifier = Modifier.offset(x = (-4).dp),
                         text = "Охваченные аккаунты",
                         color = Color(0xFFABABAB),
                         fontSize = 13.sp
@@ -291,8 +313,14 @@ private fun Content(paddingValues: PaddingValues, data: StatScreenData) {
                     Modifier.fillMaxWidth(),
                     horizontalAlignment = CenterHorizontally
                 ) {
-                    Text(text = data.involvedAccounts, style = FitnessTheme.textStyles.title)
-                    Text(text = "Вовлеченные аккаунты", color = Color(0xFFABABAB))
+                    Text(
+                        text = data.involvedAccounts, style = FitnessTheme.textStyles.title,
+                        modifier = Modifier.offset(x = (-6).dp)
+                    )
+                    Text(
+                        text = "Вовлеченные аккаунты", color = Color(0xFFABABAB),
+                        modifier = Modifier.offset(x = (-5).dp),
+                    )
                     StatGraph(
                         subscribers = data.involvedSubscribers,
                         notSubscribers = data.involvedNotSubscribers,
@@ -490,17 +518,11 @@ private fun InfoText(text: String) {
 }
 
 @Composable
-private fun Separator(size: Dp = 1.dp, color: Color = Color(0xFFD3D3D3)) {
+internal fun Separator(size: Dp = 1.dp, color: Color = Color(0xFFD3D3D3)) {
     Box(
         modifier = Modifier
             .background(color)
             .height(size)
             .fillMaxWidth()
     )
-}
-
-@Preview
-@Composable
-fun StatsPreview() {
-    StatsScreen()
 }

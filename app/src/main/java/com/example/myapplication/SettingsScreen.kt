@@ -200,7 +200,7 @@ internal fun SettingsScreen(navController: NavController) {
                     Row(verticalAlignment = Alignment.CenterVertically) {
                         Column {
                             Text(
-                                text = "254 тыс.",
+                                text = "255 тыс.",
                                 fontSize = 13.sp,
                                 color = MyColors.Black,
                                 fontWeight = FontWeight.W400,

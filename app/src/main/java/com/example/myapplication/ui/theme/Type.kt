@@ -116,6 +116,7 @@ object MyColors {
     val Surface = Color(0xFFFFFFFF)
     val Black = Color(0xFF000000)
     val Gray3 = Color(0xFF777872)
+    val Gray2 = Color(0xFFA5A79D)
     val SecondaryBlue = Color(0xBC112A4B)
     val BackgroundChip = Color(0xFFF0F0F0)
     val LightBlue = Color(0xFF4097F4)
