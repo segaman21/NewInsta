@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.verticalScroll
@@ -30,7 +31,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.font.FontWeight.Companion.W500
+import androidx.compose.ui.text.font.FontWeight.Companion.W600
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
@@ -43,32 +45,21 @@ import com.example.myapplication.ui.theme.MyColors
 @Composable
 fun StatsScreen(navController: NavController? = null) {
     FitnessTheme {
-        // A surface container using the 'background' color from the theme
         Surface(
             modifier = Modifier.fillMaxSize(),
             color = MyColors.Surface
         ) {
             Scaffold(
                 topBar = {
-                    Box(Modifier.fillMaxWidth()) {
-                        MainToolbar(
-                            title = "",
-                            backButtonRes = R.drawable.ic_back,
-                            onBackArrowClick = { navController?.popBackStack() }
-                        )
-                        Text(
-                            text = "Insights",
-                            modifier = Modifier.align(Alignment.Center),
-                            textAlign = TextAlign.Center,
-                            style = FitnessTheme.textStyles.title.copy(
-                                fontSize = 16.sp,
-                                fontWeight = FontWeight.W500
-                            )
-                        )
-                    }
+                    MainToolbar(
+                        title = "Insights",
+                        onBackArrowClick = { navController?.popBackStack() }
+                    )
+
                 },
                 content = { Content(it) },
-                bottomBar = { BottomBar() }
+                bottomBar = { BottomBar() },
+                containerColor = MyColors.Surface
             )
         }
     }
@@ -82,7 +73,6 @@ private fun Content(paddingValues: PaddingValues) {
             .fillMaxWidth()
             .verticalScroll(rememberScrollState())
     ) {
-        Separator()
         Image(
             contentScale = ContentScale.FillWidth,
             modifier = Modifier
@@ -93,7 +83,12 @@ private fun Content(paddingValues: PaddingValues) {
         )
         Text(
             modifier = Modifier.align(CenterHorizontally),
-            text = "15 ноября в 4:10"
+            text = "15 ноября в 4:10",
+            style = FitnessTheme.textStyles.body.copy(
+                fontWeight = W500,
+                color = Color(0xFF989898),
+                fontSize = 12.sp
+            )
         )
         Column {
             Column(Modifier.padding(16.dp)) {
@@ -257,20 +252,22 @@ private fun TextKeyValueRow(
 
 @Composable
 private fun InfoText(text: String) {
-    Row(Modifier.padding(vertical = 16.dp)) {
+    Row(
+        Modifier.padding(vertical = 16.dp),
+        verticalAlignment = CenterVertically
+    ) {
         Text(
             text = text,
-            textAlign = TextAlign.Center,
             style = FitnessTheme.textStyles.title.copy(
-                fontSize = 16.sp,
-                fontWeight = FontWeight.W500
+                fontSize = 18.sp,
+                fontWeight = W600
             )
         )
-        Spacer(modifier = Modifier.size(4.dp))
+        Spacer(modifier = Modifier.width(6.dp))
         Image(
-            modifier = Modifier.size(18.dp),
-            painter = painterResource(id = R.drawable.ic_info),
-            contentDescription = null
+            modifier = Modifier.size(20.dp),
+            contentDescription = null,
+            painter = painterResource(id = R.drawable.info_png),
         )
     }
 }

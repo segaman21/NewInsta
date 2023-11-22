@@ -23,9 +23,10 @@ class MainActivity : ComponentActivity() {
                 ) {
                     val navController = rememberNavController()
                     NavHost(navController = navController, startDestination = "profile") {
-                        composable("profile") { ProfileScreen(navController) }
+                //        composable("profile") { ProfileScreen(navController) }
                         composable("settings") { SettingsScreen(navController) }
                         composable("content") { ContentScreen(navController) }
+                        composable("profile") { StatsScreen(navController) }
                     }
                 }
             }

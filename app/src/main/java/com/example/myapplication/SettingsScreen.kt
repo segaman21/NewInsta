@@ -346,7 +346,5 @@ private val contentList = listOf(
     R.drawable.content_setting2,
     R.drawable.content_setting3,
     R.drawable.content_setting4,
-    R.drawable.content_setting1,
-    R.drawable.content_setting1,
-    R.drawable.content_setting1,
+    R.drawable.content_setting5,
 )
