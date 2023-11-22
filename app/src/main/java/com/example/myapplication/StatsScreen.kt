@@ -42,8 +42,61 @@ import androidx.navigation.NavController
 import com.example.myapplication.ui.theme.FitnessTheme
 import com.example.myapplication.ui.theme.MyColors
 
+data class StatScreenData(
+    @DrawableRes val previewImage: Int,
+    val previewText: String,
+    val reachedAccounts: String,
+    val involvedAccounts: String,
+    val profileActions: String,
+    val reachedSubscribers: String,
+    val reachedNotSubscribers: String,
+    val shows: String,
+    val involvedSubscribers: String,
+    val involvedNotSubscribers: String,
+    val interactions: String,
+    val likes: String,
+    val replies: String,
+    val reposts: String,
+    val clicks: String,
+    val navigationActions: String,
+    val forward: String,
+    val exits: String,
+    val back: String,
+    val next: String,
+    @DrawableRes val reachGraph: Int,
+    @DrawableRes val interatcionGragh: Int,
+)
+
+val statScreenData1 = StatScreenData(
+    R.drawable.preview,
+    "15 ноября в 4:10",
+    "105 756",
+    "392",
+    "133",
+    "98 308",
+    "7 448",
+    "105 756",
+    "385",
+    "7",
+    "427",
+    "273",
+    "105",
+    "49",
+    "14 000",
+    "14 576",
+    "97 153",
+    "8 470",
+    "5 740",
+    "3 213",
+    R.drawable.gr_1,
+    R.drawable.gr_2
+)
+
 @Composable
-fun StatsScreen(navController: NavController? = null) {
+fun StatsScreen(
+    navController: NavController? = null,
+    statScreenData: StatScreenData = statScreenData1
+) {
     FitnessTheme {
         Surface(
             modifier = Modifier.fillMaxSize(),
@@ -57,7 +110,7 @@ fun StatsScreen(navController: NavController? = null) {
                     )
 
                 },
-                content = { Content(it) },
+                content = { Content(it, statScreenData) },
                 bottomBar = { BottomBar() },
                 containerColor = MyColors.Surface
             )
@@ -66,7 +119,7 @@ fun StatsScreen(navController: NavController? = null) {
 }
 
 @Composable
-private fun Content(paddingValues: PaddingValues) {
+private fun Content(paddingValues: PaddingValues, data: StatScreenData) {
     Column(
         Modifier
             .padding(paddingValues)
@@ -78,15 +131,15 @@ private fun Content(paddingValues: PaddingValues) {
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(top = 8.dp),
-            painter = painterResource(id = R.drawable.preview),
+            painter = painterResource(id = data.previewImage),
             contentDescription = null
         )
         Text(
             modifier = Modifier.align(CenterHorizontally),
-            text = "15 ноября в 4:10",
+            text = data.previewText,
             style = FitnessTheme.textStyles.body.copy(
                 fontWeight = W500,
-                color = Color(0xFF989898),
+                color = Color(0xFFABABAB),
                 fontSize = 12.sp
             )
         )
@@ -97,9 +150,15 @@ private fun Content(paddingValues: PaddingValues) {
                     Modifier.fillMaxWidth(),
                     verticalArrangement = Arrangement.spacedBy(16.dp)
                 ) {
-                    TextKeyValueRow(textKey = "Охваченные аккаунты", textValue = "105 756")
-                    TextKeyValueRow(textKey = "Вовлеченные аккаунты", textValue = "392")
-                    TextKeyValueRow(textKey = "Действия в профиле", textValue = "133")
+                    TextKeyValueRow(
+                        textKey = "Охваченные аккаунты",
+                        textValue = data.reachedAccounts
+                    )
+                    TextKeyValueRow(
+                        textKey = "Вовлеченные аккаунты",
+                        textValue = data.involvedAccounts
+                    )
+                    TextKeyValueRow(textKey = "Действия в профиле", textValue = data.profileActions)
                 }
             }
 
@@ -116,12 +175,12 @@ private fun Content(paddingValues: PaddingValues) {
                     Modifier.fillMaxWidth(),
                     horizontalAlignment = CenterHorizontally
                 ) {
-                    Text(text = "105 756")
-                    Text(text = "Охваченные аккаунты")
+                    Text(text = data.reachedAccounts, style = FitnessTheme.textStyles.title)
+                    Text(text = "Охваченные аккаунты", color = Color(0xFFABABAB))
                     StatGraph(
-                        subscribers = "98 308",
-                        notSubscribers = "7 448",
-                        graphImage = R.drawable.gr_1
+                        subscribers = data.reachedSubscribers,
+                        notSubscribers = data.reachedNotSubscribers,
+                        graphImage = data.reachGraph
                     )
                 }
                 Spacer(modifier = Modifier.size(8.dp))
@@ -129,7 +188,7 @@ private fun Content(paddingValues: PaddingValues) {
                 TextKeyValueRow(
                     modifier = Modifier.padding(vertical = 16.dp),
                     textKey = "Показы",
-                    textValue = "105 756",
+                    textValue = data.shows,
                     textStyle = FitnessTheme.textStyles.body1
                 )
             }
@@ -144,12 +203,12 @@ private fun Content(paddingValues: PaddingValues) {
                     Modifier.fillMaxWidth(),
                     horizontalAlignment = CenterHorizontally
                 ) {
-                    Text(text = "392")
-                    Text(text = "Вовлеченные аккаунты")
+                    Text(text = data.involvedAccounts, style = FitnessTheme.textStyles.title)
+                    Text(text = "Вовлеченные аккаунты", color = Color(0xFFABABAB))
                     StatGraph(
-                        subscribers = "385",
-                        notSubscribers = "7",
-                        graphImage = R.drawable.gr_2
+                        subscribers = data.involvedSubscribers,
+                        notSubscribers = data.involvedNotSubscribers,
+                        graphImage = data.interatcionGragh
                     )
                 }
 
@@ -157,28 +216,28 @@ private fun Content(paddingValues: PaddingValues) {
                 TextKeyValueRow(
                     modifier = Modifier.padding(vertical = 16.dp),
                     textKey = "Взаимодействия с историей",
-                    textValue = "427",
+                    textValue = data.interactions,
                     textStyle = FitnessTheme.textStyles.body1
                 )
                 Column(
                     verticalArrangement = Arrangement.spacedBy(16.dp)
                 ) {
-                    TextKeyValueRow(textKey = "Отметки \"Нравится\"", textValue = "273")
-                    TextKeyValueRow(textKey = "Ответы", textValue = "105")
-                    TextKeyValueRow(textKey = "Репосты", textValue = "49")
+                    TextKeyValueRow(textKey = "Отметки \"Нравится\"", textValue = data.likes)
+                    TextKeyValueRow(textKey = "Ответы", textValue = data.replies)
+                    TextKeyValueRow(textKey = "Репосты", textValue = data.reposts)
                     Separator(color = Color(0xFFF5F5F5))
-                    TextKeyValueRow(textKey = "Клики по ссылкам", textValue = "14 000")
+                    TextKeyValueRow(textKey = "Клики по ссылкам", textValue = data.clicks)
                     Separator(color = Color(0xFFF5F5F5))
                     TextKeyValueRow(
                         modifier = Modifier.padding(vertical = 16.dp),
                         textKey = "Навигация",
-                        textValue = "427",
+                        textValue = data.navigationActions,
                         textStyle = FitnessTheme.textStyles.body1
                     )
-                    TextKeyValueRow(textKey = "Вперед", textValue = "97 153")
-                    TextKeyValueRow(textKey = "Выходы", textValue = "8 470")
-                    TextKeyValueRow(textKey = "Назад", textValue = "5 740")
-                    TextKeyValueRow(textKey = "Следующая история", textValue = "3 213")
+                    TextKeyValueRow(textKey = "Вперед", textValue = data.forward)
+                    TextKeyValueRow(textKey = "Выходы", textValue = data.exits)
+                    TextKeyValueRow(textKey = "Назад", textValue = data.back)
+                    TextKeyValueRow(textKey = "Следующая история", textValue = data.next)
                     Spacer(modifier = Modifier.size(8.dp))
                 }
             }
@@ -201,7 +260,7 @@ private fun StatGraph(
         Column(horizontalAlignment = Alignment.End) {
             Text(text = subscribers)
             Row {
-                Text(text = "Подписчики")
+                Text(text = "Подписчики", color = Color(0xFFABABAB))
                 Box(
                     Modifier
                         .padding(horizontal = 2.dp)
@@ -213,9 +272,10 @@ private fun StatGraph(
             }
         }
         Image(
-            modifier = Modifier.padding(horizontal = 16.dp),
+            modifier = Modifier.padding(horizontal = 16.dp).size(64.dp),
             painter = painterResource(id = graphImage),
-            contentDescription = null
+            contentDescription = null,
+            contentScale = ContentScale.Fit
         )
         Column(horizontalAlignment = Alignment.Start) {
             Text(text = notSubscribers)
@@ -228,7 +288,7 @@ private fun StatGraph(
                         .clip(CircleShape)
                         .background(color = Color(0xFF1A366C))
                 )
-                Text(text = "Неподписчики")
+                Text(text = "Неподписчики", color = Color(0xFFABABAB))
             }
         }
     }
