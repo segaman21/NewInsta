@@ -317,7 +317,8 @@ internal fun Chip() {
 internal fun Actual() {
     val actualList = listOf(
         R.drawable.actual_first,
-        R.drawable.act_second,
+        R.drawable.newstor,
+        R.drawable.pranki,
         R.drawable.act_3,
         R.drawable.act_4,
         R.drawable.act_5,

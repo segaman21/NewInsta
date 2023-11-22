@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.Arrangement.Absolute.spacedBy
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -55,7 +54,6 @@ fun ContentScreen(navController: NavController) {
     }
 
     FitnessTheme {
-        // A surface container using the 'background' color from the theme
         Surface(
             modifier = Modifier.fillMaxSize(),
             color = MyColors.Surface
@@ -114,12 +112,17 @@ fun ContentScreen(navController: NavController) {
                                         modifier = Modifier
                                             .fillMaxWidth()
                                             .fillMaxHeight()
-                                            .clickable { navController.navigate("stats") },
+                                            .clickable {
+                                                if (it == R.drawable.content26) {
+                                                    navController.navigate("stats")
+                                                } else {
+                                                    navController.navigate("stats2")
+                                                }
+                                            },
                                         contentScale = ContentScale.FillWidth,
                                         painter = painterResource(id = it),
                                         contentDescription = "",
-
-                                        )
+                                    )
                                 }
                             }
                         }

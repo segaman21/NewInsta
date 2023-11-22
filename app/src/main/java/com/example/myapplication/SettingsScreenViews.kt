@@ -1,6 +1,8 @@
 package com.example.myapplication
 
+import android.os.Build
 import androidx.annotation.DrawableRes
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -79,6 +81,7 @@ internal fun MainToolbar(
     }
 }
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 internal fun SettingChip() {
     Box(
@@ -114,7 +117,7 @@ internal fun SettingChip() {
             Spacer(modifier = Modifier.width(12.dp))
         }
         Text(
-            text = "15 ноя - 21 ноя",
+            text = "${currentDay() - 7} ноя - ${currentDay() - 1} ноя",
             modifier = Modifier
                 .padding(end = 6.dp)
                 .align(Alignment.BottomEnd),

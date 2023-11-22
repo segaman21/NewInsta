@@ -1,5 +1,8 @@
 package com.example.myapplication
 
+import android.os.Build
+import android.util.Log
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -44,10 +47,12 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.myapplication.ui.theme.FitnessTheme
 import com.example.myapplication.ui.theme.MyColors
+import java.time.LocalDate
 import kotlin.random.Random
 import kotlin.time.Duration.Companion.seconds
 import kotlinx.coroutines.delay
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 internal fun SettingsScreen(navController: NavController) {
     var loading by remember { mutableStateOf(true) }
@@ -327,6 +332,7 @@ internal fun SettingsScreen(navController: NavController) {
     }
 }
 
+@RequiresApi(Build.VERSION_CODES.O)
 private fun buildRequiredInputText(): AnnotatedString {
     return buildAnnotatedString {
         append("Число новых подписчиков увеличилось на ")
@@ -337,9 +343,12 @@ private fun buildRequiredInputText(): AnnotatedString {
         ) {
             append("1 421")
         }
-        append(" по сравнению с периодом 8 ноя - 14 ноя.")
+        append(" по сравнению с периодом ${currentDay() - 14} ноя - ${currentDay() - 8} ноя.")
     }
 }
+
+@RequiresApi(Build.VERSION_CODES.O)
+fun currentDay() = LocalDate.now().dayOfMonth
 
 private val contentList = listOf(
     R.drawable.content_setting1,
